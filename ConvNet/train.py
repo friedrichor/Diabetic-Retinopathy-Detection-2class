@@ -7,22 +7,18 @@ from torch.utils.tensorboard import SummaryWriter
 from torchvision import transforms
 
 from my_dataset import MyDataSet
-from model import convnext_tiny as create_model  # 更改预训练模型时更改import内容
 from utils import read_split_data, create_lr_scheduler, get_params_groups, train_one_epoch, evaluate
-
-import sys
-sys.path.append('..')  # import时添加上级目录路径
 import params
-
-ROOT = params.ROOT / 'ConvNet'  # 当前所在根目录
+from model import convnext_tiny as create_model  # 更改预训练模型时更改import内容
 
 
 def main(args):
+    print(args)
     device = args.device
     print(f"using {device} device.")
 
-    if os.path.exists(ROOT / 'weights') is False:
-        os.makedirs(ROOT / 'weights')
+    if os.path.exists(params.ROOT / 'weights') is False:
+        os.makedirs(params.ROOT / 'weights')
 
     tb_writer = SummaryWriter()
 
@@ -115,7 +111,7 @@ def main(args):
         tb_writer.add_scalar(tags[4], optimizer.param_groups[0]["lr"], epoch)
 
         if best_acc < val_acc:
-            torch.save(model.state_dict(), ROOT / 'weights/best_model.pth')
+            torch.save(model.state_dict(), params.model)
             best_acc = val_acc
 
 

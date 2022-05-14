@@ -13,6 +13,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 num_classes = 2
 
-path_train = ROOT / 'data/data_split/train_enh/'
-path_test = ROOT / 'data/data_split/test/'
+model = ROOT / 'weights' / 'best_model.pth'  # 保存模型路径 & predict时调用的模型
+path_train = ROOT / '../data/data_split/train_enh/'
+path_test = ROOT / '../data/data_split/test/'
 path_json = ROOT / 'class_indices.json'

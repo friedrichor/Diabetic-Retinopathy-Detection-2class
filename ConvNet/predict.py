@@ -7,16 +7,12 @@ from PIL import Image
 from torchvision import transforms
 import matplotlib.pyplot as plt
 
-from model import convnext_tiny as create_model
-
-import sys
-sys.path.append('..')
+from model import convnext_tiny as create_model  # 更改预训练模型时更改import内容
 import params
-
-ROOT = params.ROOT / 'ConvNet'
 
 
 def main(args):
+    print(args)
     device = args.device
     print(f"using {device} device.")
 
@@ -43,8 +39,6 @@ def main(args):
     model.eval()
 
     test_path = str(args.path_test) + '/'
-    num_0_1 = len(os.listdir(test_path + '0-1'))  # 0-1 数量
-    num_2_3 = len(os.listdir(test_path + '2-3'))  # 2-3 数量
     TP, FN, FP, TN = 0, 0, 0, 0
     for cls in os.listdir(test_path):
         img_list = []
@@ -92,7 +86,7 @@ def main(args):
 
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'weights/best_model.pth', help='model path(s)')  # 模型参数
+    parser.add_argument('--weights', nargs='+', type=str, default=params.model, help='model path(s)')  # 模型参数
     parser.add_argument('--path_test', type=str, default=params.path_test, help='test datasets path')  # 测试集路径
     parser.add_argument('--path_json', type=str, default=params.path_json, help='class_indice.json path')
     parser.add_argument('--num_classes', type=int, default=params.num_classes, help='number of classes')
