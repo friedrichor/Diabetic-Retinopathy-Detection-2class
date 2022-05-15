@@ -77,7 +77,7 @@ def main(args):
     precision = TP / (TP + FP)
     recall = TP / (TP + FN)
     F1 = 2 * precision * recall / (precision+recall)
-    print('TP =', TP, 'FN =', FN, 'FP =', FP, 'TP =', TP)
+    print('TP =', TP, 'FN =', FN, 'FP =', FP, 'TN =', TN)
     print('准确率:', accuracy)
     print('精确率:', precision)
     print('召回率:', recall)
