@@ -38,7 +38,7 @@ def random_sharpness(image):  # 锐度
 
 
 # 扩充数据集，先通过翻转将所有类别的数据集扩充到相同数量，再随机增强亮度、对比度、色度、锐度
-def random_expand(content_ori, content_tra, content_enh, num_after_trans=600):
+def random_expand(content_ori, content_tra, content_tra_enh, num_after_trans=600):
     # 通过翻转将不同类别的数据集扩充到相同数量
     for cls in os.listdir(content_ori):
         if cls == 'test':  # 测试集不做处理
@@ -66,7 +66,7 @@ def random_expand(content_ori, content_tra, content_enh, num_after_trans=600):
         if cls == 'test':
             continue
         content_tra_cls = content_tra + cls + '/'  # 翻转后图片保存目录
-        content_enh_cls = content_enh + cls + '/'  # 增强后图片保存目录
+        content_enh_cls = content_tra_enh + cls + '/'  # 增强后图片保存目录
 
         # 清空目录内容
         if os.path.exists(content_enh_cls):
@@ -84,10 +84,10 @@ def random_expand(content_ori, content_tra, content_enh, num_after_trans=600):
 
 
 if __name__ == '__main__':
-    content_ori = 'data/data_split/train/'
-    content_tra = 'data/data_split/train_tra/'
-    content_enh = 'data/data_split/train_enh/'
-    for content in [content_tra, content_enh]:
+    content_ori = 'data_ori/datasets/train/'
+    content_tra = 'data_ori/datasets/train_tra/'
+    content_tra_enh = 'data/train/'
+    for content in [content_tra, content_tra_enh]:
         if not os.path.exists(content):
             os.mkdir(content)
-    random_expand(content_ori, content_tra, content_enh)
+    random_expand(content_ori, content_tra, content_tra_enh)

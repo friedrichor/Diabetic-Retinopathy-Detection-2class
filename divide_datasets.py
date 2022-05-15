@@ -52,13 +52,12 @@ def split_train_test(content_div, content_split, rate_test=0.1):
 
 
 if __name__ == '__main__':
-    file = 'data/Mess1_annotation_train.csv'
-    content_ori = 'data/train/'
-    content_div = 'data/train_div/'
-    content_split = 'data/data_split/'
-    for content in [content_div, content_split]:
-        if not os.path.exists(content):
-            os.mkdir(content)
+    file = 'data_ori/Mess1_annotation_train.csv'
+    content_ori = 'data_ori/datasets/'
+    content_div = 'data_ori/datasets_div/'
+    content_split = 'data_ori/'
+    if not os.path.exists(content_div):
+        os.mkdir(content_div)
     datasets_div(file, content_ori, content_div)
     split_train_test(content_div, content_split)
 
