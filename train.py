@@ -128,7 +128,7 @@ if __name__ == '__main__':
 
     # 预训练权重路径，如果不想载入就设置为空字符
     parser.add_argument('--weights', type=str,
-                        default=params.ROOT / '../drive/MyDrive/torch_convnet/convnext_tiny_1k_224_ema.pth',
+                        default=params.ROOT / '../drive/MyDrive/torch_convnext/convnext_tiny_1k_224_ema.pth',
                         help='initial weights path')
     # 是否冻结head以外所有权重
     parser.add_argument('--freeze-layers', type=bool, default=False)
