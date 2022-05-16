@@ -7,7 +7,7 @@ from PIL import Image
 from torchvision import transforms
 import matplotlib.pyplot as plt
 
-from model import convnext_tiny as create_model  # 更改预训练模型时更改import内容
+from model import convnext_large as create_model  # 更改预训练模型时更改import内容
 import params
 
 
